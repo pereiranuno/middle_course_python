@@ -25,13 +25,51 @@ class Event:
 class EventManager:
     def __init__(self, events):
         
+        """
+        Initialize an EventManager object with the given events.
+
+        Parameters
+        ----------
+        events : list of dict
+            A list of dictionaries with the following elements:
+                - show: str
+                - event: str
+                - timestamp: int
+                - user_id: int
+
+        Returns
+        -------
+        None
+        """
+
         self.events = [Event(**event) for event in events]
         self.index = 0
 
     def __iter__(self):
+        """
+        Returns an iterator for the events managed by this EventManager object.
+
+        Returns
+        -------
+        iterator
+            An iterator over the events managed by this EventManager object.
+        """
         return self
 
     def __next__(self):
+        """
+        Returns the next event in the sequence of events managed by this EventManager object.
+
+        Returns
+        -------
+        Event
+            The next event in the sequence of events managed by this EventManager object.
+
+        Raises
+        ------
+        StopIteration
+            If the end of the sequence of events has been reached.
+        """
         if self.index < len(self.events):
             current_event = self.events[self.index]
             self.index += 1
@@ -40,6 +78,20 @@ class EventManager:
             raise StopIteration
 
     def calculate_active_users_per_show(self):
+        """
+        Calculate the active users per show in a given list of events.
+
+        Returns
+        -------
+        dict
+            A dictionary with the show names as keys and a set of active user ids as values.
+
+        Raises
+        ------
+        Exception
+            If there is an error when calculating the active users per show.
+        """
+        
         try:
             active_users_show = {}
             sorted_events = sorted(self.events, key=lambda x: x.timestamp)
@@ -59,6 +111,23 @@ class EventManager:
             return {}
 
     def export_active_users_per_show(self, filename):
+        """
+        Export the active users per show to a CSV file.
+
+        Parameters
+        ----------
+        filename : str
+            The name of the file to export the data to.
+
+        Returns
+        -------
+        None
+
+        Raises
+        ------
+        Exception
+            If there is an error exporting the data to the file.
+        """
         try:
             active_users = self.calculate_active_users_per_show()
             # Convert the active users data to a DataFrame
@@ -76,6 +145,32 @@ class EventManager:
 
 
 def convert_tabular_file_content_to_dictionary(filename) -> list:
+    """
+    Read a tabular file and convert its content to a list of dictionaries.
+
+    Parameters
+    ----------
+    filename : str
+        The name of the file to read.
+
+    Returns
+    -------
+    list
+        A list of dictionaries, where each dictionary has the following keys:
+            - show: str
+            - event: str
+            - timestamp: int
+            - user_id: int
+
+    Raises
+    ------
+    FileNotFoundError
+        If the file is not found.
+    ValueError
+        If there is an error processing the file.
+    Exception
+        If an unexpected error occurs while reading the file.
+    """
     try:
         with open(filename, "r") as registry_tabular:
             registry_list = []
