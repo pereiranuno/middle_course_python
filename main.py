@@ -1,17 +1,16 @@
-
 from event_manager import EventManager
 from utils import convert_tabular_file_content_to_dictionary as convert_tsv_to_dict
 import pandas as pd
 
 if __name__ == "__main__":
-    registry_list = convert_tsv_to_dict("events.tsv",registry_fields = ["show", "event", "timestamp", "user_id"])
+    registry_list = convert_tsv_to_dict("events.tsv",registry_keys = ["show", "event", "timestamp", "user_id"])
     if registry_list:
         event_manager = EventManager(registry_list)
         event_manager.export_active_users_per_show("output.csv")
 
     # Tests using assert
     try:
-        # Test 1: Check if events are read correctly from the file
+        # Test 1: Check if events are passed correctly
         sample_registry = [
             {"show": "The Witcher", "event": "start", "timestamp": 0, "user_id": 1},
             {"show": "The Witcher", "event": "stop", "timestamp": 1, "user_id": 1}

@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+
+@dataclass
 class Event:
     def __init__(self, show, event, timestamp, user_id):
         """
