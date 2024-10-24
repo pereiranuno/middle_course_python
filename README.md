@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Projeto de Gestão de Eventos</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-        pre { background-color: #f4f4f4; padding: 10px; overflow-x: auto; }
-        code { background-color: #f4f4f4; padding: 2px 4px; }
-        h1, h2, h3 { color: #333; }
-        ul { list-style-type: disc; margin-left: 20px; }
-        ol { list-style-type: decimal; margin-left: 20px; }
-        a { color: #0366d6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+
 </head>
 <body>
 
