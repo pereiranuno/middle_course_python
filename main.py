@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     # Tests using assert
     try:
-        # Test 1: Check if events are passed correctly
+        # Test 1: Check if events are passed correctly on EventManager initialization
         sample_registry = [
             {"show": "The Witcher", "event": "start", "timestamp": 0, "user_id": 1},
             {"show": "The Witcher", "event": "stop", "timestamp": 1, "user_id": 1}
