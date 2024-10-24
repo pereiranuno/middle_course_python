@@ -1,8 +1,7 @@
-def convert_tabular_file_content_to_dictionary(filename) -> list:
+def convert_tabular_file_content_to_dictionary(filename,registry_fields) -> list:
     try:
         with open(filename, "r") as registry_tabular:
             registry_list = []
-            registry_fields = ["show", "event", "timestamp", "user_id"]
             for line in registry_tabular.readlines():
                 line = line.strip().split("\t")
                 registry = {}
