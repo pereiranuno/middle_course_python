@@ -123,21 +123,14 @@ cd o_seu_repositorio
             <pre><code class="language-bash">pip install --upgrade -r requirements.txt</code></pre>
         </ul>
     </li>
-    <li><strong>Contribuição:</strong>
-        <ul>
-            <li>Sinta-se à vontade para contribuir para o projeto através de pull requests.</li>
-            <li>Para reportar problemas ou sugerir melhorias, abra uma issue no GitHub.</li>
-        </ul>
-    </li>
     <li><strong>Contacto:</strong>
         <ul>
-            <li>Para dúvidas ou suporte, entre em contacto via e-mail: <a href="mailto:o_seu_email@example.com">o_seu_email@example.com</a>.</li>
+            <li>Para dúvidas entre em contacto via e-mail: <a href="mailto:pereiranuno88@gmail.com">pereiranuno88@gmail.com</a>.</li>
         </ul>
     </li>
 </ul>
 
-<h2 id="licenca">Licença</h2>
-<p>Este projeto está licenciado sob os termos da <a href="LICENSE">Licença MIT</a>.</p>
+
 
 <hr>
 
