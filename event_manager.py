@@ -29,6 +29,7 @@ class EventManager:
             self.events.append(Event(show, event_type, timestamp, user_id))
         self.index = 0
         self.events.sort(key=lambda x: x.timestamp)
+        self._range= [i for i in range(1, len(self.events))] #validar se isto faz sentido#
 
     def __iter__(self):
         return self
@@ -40,6 +41,10 @@ class EventManager:
             return current_event
         else:
             raise StopIteration
+        
+          
+    def __getitem__(self, index): #validar se isto faz sentido#
+        return self._range[index]      
         
 
 
