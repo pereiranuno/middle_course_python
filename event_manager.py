@@ -28,6 +28,7 @@ class EventManager:
             user_id = event["user_id"]
             self.events.append(Event(show, event_type, timestamp, user_id))
         self.index = 0
+        self.events.sort(key=lambda x: x.timestamp)
 
     def __iter__(self):
         return self
@@ -39,13 +40,14 @@ class EventManager:
             return current_event
         else:
             raise StopIteration
+        
+
 
     def calculate_active_users_per_show(self):
         try:
             active_users_show = {}
-            sorted_events = sorted(self.events, key=lambda x: x.timestamp)
 
-            for event in sorted_events:
+            for event in self.events:
                 if event.event == 'start':
                     if event.show not in active_users_show:
                         active_users_show[event.show] = set()
