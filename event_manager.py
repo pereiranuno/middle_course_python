@@ -127,7 +127,7 @@ class EventManager:
         except Exception as e:
             print(f"Error exporting active users per show to file: {e}")
 
-    def plot_active_users_per_show(self):
+    def graph_active_users_per_show(self,graph_type):
         """
         Plot the number of active users per show using matplotlib.
 
@@ -147,15 +147,24 @@ class EventManager:
             for show, user_count in data_generator:
                 shows.append(show)
                 active_users.append(user_count)
-            # Plotting the bar chart
-            plt.figure(figsize=(10, 6))
-            plt.bar(shows, active_users)
-            plt.xlabel('Show')
-            plt.ylabel('Number of Active Users')
-            plt.title('Number of Active Users per Show')
-            plt.xticks(rotation=45, ha="right")
-            plt.tight_layout()
-            plt.show()
+            if graph_type == "plot_bar":
+                # Plotting the bar chart
+                plt.figure(figsize=(10, 6))
+                plt.bar(shows, active_users)
+                plt.xlabel('Show')
+                plt.ylabel('Number of Active Users')
+                plt.title('Number of Active Users per Show')
+                plt.xticks(rotation=45, ha="right")
+                plt.tight_layout()
+                plt.show()
+
+            elif graph_type == "plot_pie":
+                # Plotting the pie chart
+                plt.figure(figsize=(10, 6))
+                plt.pie(active_users, labels=shows, autopct='%1.1f%%', startangle=140)
+                plt.title('Proportion of Active Users per Show')
+                plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+                plt.show()
 
         except Exception as e:
-            print(f"Error plotting active users per show: {e}")
+            print(f"Error creatting graph of active users per show: {e}")

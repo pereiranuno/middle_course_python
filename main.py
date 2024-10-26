@@ -7,7 +7,7 @@ if __name__ == "__main__":
     if registry_list:
         event_manager = EventManager(registry_list)
         event_manager.export_active_users_per_show("output.csv")
-        event_manager.plot_active_users_per_show()
+        event_manager.graph_active_users_per_show('plot_pie')
 
     # Tests using assert
     try:
