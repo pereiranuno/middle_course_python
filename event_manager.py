@@ -30,13 +30,35 @@ class EventManager:
         self.events.sort(key=lambda x: x.timestamp)
         self.index = 0
 
-    def __iter__(self):
-        # Retorna a instância atual para ser iterada
-        self.index = 0  # Reinicia o índice ao começar a iteração
+    def __iter__(self):       
+        """
+        Returns an iterator object that allows iteration over the events.
+
+        This method resets the index for iteration and returns the instance
+        itself, which is iterable. It is automatically called when an iteration
+        over the EventManager instance is initiated, making the instance ready
+        to provide elements one by one through the use of the __next__ method.
+        
+        Returns
+        -------
+        self : EventManager
+            The instance itself, which is iterable.
+        """
+        self.index = 0 
         return self
 
     def __next__(self):
-        # Retorna o próximo elemento, ou levanta StopIteration quando acabar
+        """
+        Returns the next event in the sorted list of events.
+
+        This method is automatically called when using a for loop or the
+        next() function. It returns the next event in the sorted list of
+        events, or raises StopIteration when the end of the list is reached.
+
+        Returns
+        -------
+        Event: The next event in the sorted list of events.
+        """
         if self.index < len(self.events):
             current_event = self.events[self.index]
             self.index += 1
@@ -44,14 +66,15 @@ class EventManager:
         else:
             raise StopIteration
 
-    def __getitem__(self, index):
-        # Acesso direto aos eventos por índice
+    def __getitem__(self, index):        
         if 0 <= index < len(self.events):
             return self.events[index]
         else:
             raise IndexError("Index out of range.")
         
 
+    def __contains__(self, event):
+        return event in self.events     
 
     def calculate_active_users_per_show(self):
         try:
@@ -70,15 +93,36 @@ class EventManager:
         except Exception as e:
             print(f"Error calculating active users per show: {e}")
             return {}
+        
+
+    def active_users_per_show_generator(self):
+        active_users_show = self.calculate_active_users_per_show()
+
+        for show, users_list in active_users_show.items():
+            yield (show, len(users_list))    
 
     def export_active_users_per_show(self, filename):
         try:
-            active_users = self.calculate_active_users_per_show()
-            # Convert the active users data to a DataFrame
+
+            data_generator = self.active_users_per_show_generator()
+            shows = []
+            active_users = []
+
+            for show, user_count in data_generator:
+                shows.append(show)
+                active_users.append(user_count)
+
+            # Converter os dados para um DataFrame
             data = {
-                "Show": list(active_users.keys()),
-                "Active Users": [len(users) for users in active_users.values()]
+                "Show": shows,
+                "Active Users": active_users
             }
+            # active_users_show = self.calculate_active_users_per_show()
+            # # Convert the active users data to a DataFrame
+            # data = {
+            #     "Show": list(active_users_show.keys()),
+            #     "Active Users": [len(users) for users in active_users_show.values()]
+            # }
             df = pd.DataFrame(data)
 
             # Export the DataFrame to a CSV file

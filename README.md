@@ -7,7 +7,7 @@
 
 <h1>Projeto de Gestão de Eventos</h1>
 
-<p>Este projeto consiste num sistema para gerir eventos de início e término de visualização de programas por utilizadores, calcular utilizadores ativos por programa e exportar esses dados para um ficheiro CSV. O projeto está organizado em módulos separados e utiliza um ambiente virtual Python para gerir as dependências.</p>
+<p>Este permite calcular utilizadores ativos por programa e exportar esses dados para um ficheiro output. O projeto está organizado em módulos separados e utiliza um ambiente virtual Python para gerir as dependências.</p>
 
 <h2>Sumário</h2>
 <ul>
