@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from event import Event
 
 
@@ -125,3 +126,36 @@ class EventManager:
             print(f"Data successfully exported to {filename}")
         except Exception as e:
             print(f"Error exporting active users per show to file: {e}")
+
+    def plot_active_users_per_show(self):
+        """
+        Plot the number of active users per show using matplotlib.
+
+        This method uses the calculated data from active users per show and 
+        plots it in a bar chart for easy visualization.
+
+        Returns
+        -------
+        None
+        """
+        try:
+            # Use the generator to get the data
+            data_generator = self.active_users_per_show_generator()
+            shows = []
+            active_users = []
+
+            for show, user_count in data_generator:
+                shows.append(show)
+                active_users.append(user_count)
+            # Plotting the bar chart
+            plt.figure(figsize=(10, 6))
+            plt.bar(shows, active_users)
+            plt.xlabel('Show')
+            plt.ylabel('Number of Active Users')
+            plt.title('Number of Active Users per Show')
+            plt.xticks(rotation=45, ha="right")
+            plt.tight_layout()
+            plt.show()
+
+        except Exception as e:
+            print(f"Error plotting active users per show: {e}")

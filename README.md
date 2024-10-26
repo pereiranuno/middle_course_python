@@ -47,6 +47,7 @@
 <ul>
     <li>Python 3.6 ou superior</li>
     <li>Biblioteca <code>pandas</code></li>
+    <li>Biblioteca <code>matplotlib</code></li>
 </ul>
 
 <h2 id="configuracao-do-ambiente">Configuração do Ambiente</h2>
