@@ -27,24 +27,29 @@ class EventManager:
             timestamp = event["timestamp"]
             user_id = event["user_id"]
             self.events.append(Event(show, event_type, timestamp, user_id))
-        self.index = 0
         self.events.sort(key=lambda x: x.timestamp)
-        self._range= [i for i in range(1, len(self.events))] #validar se isto faz sentido#
+        self.index = 0
 
     def __iter__(self):
+        # Retorna a instância atual para ser iterada
+        self.index = 0  # Reinicia o índice ao começar a iteração
         return self
 
     def __next__(self):
+        # Retorna o próximo elemento, ou levanta StopIteration quando acabar
         if self.index < len(self.events):
             current_event = self.events[self.index]
             self.index += 1
             return current_event
         else:
             raise StopIteration
-        
-          
-    def __getitem__(self, index): #validar se isto faz sentido#
-        return self._range[index]      
+
+    def __getitem__(self, index):
+        # Acesso direto aos eventos por índice
+        if 0 <= index < len(self.events):
+            return self.events[index]
+        else:
+            raise IndexError("Index out of range.")
         
 
 
@@ -52,7 +57,7 @@ class EventManager:
         try:
             active_users_show = {}
 
-            for event in self.events:
+            for event in self:
                 if event.event == 'start':
                     if event.show not in active_users_show:
                         active_users_show[event.show] = set()
