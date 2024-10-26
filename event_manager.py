@@ -1,5 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 from event import Event
 
 
@@ -127,47 +126,4 @@ class EventManager:
         except Exception as e:
             print(f"Error exporting active users per show to file: {e}")
 
-    def graph_active_users_per_show(self,graph_type):
-       
-        """
-        Graphs the active users per show using either a bar or pie chart.
-
-        Parameters
-        ----------
-        graph_type : str
-            The type of graph to create. Options are "plot_bar" or "plot_pie".
-
-        Returns
-        -------
-        None
-        """
-        try:
-            # Use the generator to get the data
-            data_generator = self.active_users_per_show_generator()
-            shows = []
-            active_users = []
-
-            for show, user_count in data_generator:
-                shows.append(show)
-                active_users.append(user_count)
-            if graph_type == "plot_bar":
-                # Plotting the bar chart
-                plt.figure(figsize=(10, 6))
-                plt.bar(shows, active_users)
-                plt.xlabel('Show')
-                plt.ylabel('Number of Active Users')
-                plt.title('Number of Active Users per Show')
-                plt.xticks(rotation=45, ha="right")
-                plt.tight_layout()
-                plt.show()
-
-            elif graph_type == "plot_pie":
-                # Plotting the pie chart
-                plt.figure(figsize=(10, 6))
-                plt.pie(active_users, labels=shows, autopct='%1.1f%%', startangle=140)
-                plt.title('Proportion of Active Users per Show')
-                plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-                plt.show()
-
-        except Exception as e:
-            print(f"Error creatting graph of active users per show: {e}")
+  
