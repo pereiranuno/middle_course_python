@@ -117,12 +117,7 @@ class EventManager:
                 "Show": shows,
                 "Active Users": active_users
             }
-            # active_users_show = self.calculate_active_users_per_show()
-            # # Convert the active users data to a DataFrame
-            # data = {
-            #     "Show": list(active_users_show.keys()),
-            #     "Active Users": [len(users) for users in active_users_show.values()]
-            # }
+
             df = pd.DataFrame(data)
 
             # Export the DataFrame to a CSV file
