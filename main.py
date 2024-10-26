@@ -12,18 +12,18 @@ if __name__ == "__main__":
     # Tests using assert
     try:
         # Test 1: Check if events are passed correctly on EventManager initialization
-        sample_registry = [
+        test_registry = [
             {"show": "The Witcher", "event": "start", "timestamp": 0, "user_id": 1},
             {"show": "The Witcher", "event": "stop", "timestamp": 1, "user_id": 1}
         ]
-        event_manager = EventManager(sample_registry)
+        event_manager = EventManager(test_registry)
         assert len(event_manager.events) == 2, "Test failed: Incorrect number of events in EventManager"
 
         # Test 2: Check active user calculation
         active_users = event_manager.calculate_active_users_per_show()
         assert active_users == {"The Witcher": set()}, "Test failed: Active users calculation is incorrect"
 
-        # Test 3: Check export function (manual verification needed)
+        # Test 3: Check export function output
         event_manager.export_active_users_per_show("test_output.csv")
         df = pd.read_csv("test_output.csv")
         assert "The Witcher" in df["Show"].values, "Test failed: Export function did not output correctly"

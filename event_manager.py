@@ -128,11 +128,14 @@ class EventManager:
             print(f"Error exporting active users per show to file: {e}")
 
     def graph_active_users_per_show(self,graph_type):
+       
         """
-        Plot the number of active users per show using matplotlib.
+        Graphs the active users per show using either a bar or pie chart.
 
-        This method uses the calculated data from active users per show and 
-        plots it in a bar chart for easy visualization.
+        Parameters
+        ----------
+        graph_type : str
+            The type of graph to create. Options are "plot_bar" or "plot_pie".
 
         Returns
         -------
