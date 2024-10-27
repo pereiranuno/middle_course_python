@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1>Projeto de exportação de informação de subcrição de utilizadores de um conjunto de programas.</h1>
+<h1>Projeto de informação de subcrição de utilizadores de um conjunto de programas.</h1>
 
 <p>Este programa permite ler dados de registo de adesão/cancelamento de subscritores de programa Netflix, e calcular os utilizadores ativos por programa, e exportar esses dados para um ficheiro output. O projeto está organizado em módulos separados e utiliza um ambiente virtual Python para gerir as dependências.</p>
 
