@@ -22,11 +22,7 @@ class EventManager:
         """
         self.events = []
         for event in events:
-            show = event["show"]
-            event_type = event["event"]
-            timestamp = event["timestamp"]
-            user_id = event["user_id"]
-            self.events.append(Event(show, event_type, timestamp, user_id))
+            self.events.append(Event(event["show"], event["event"], event["timestamp"], event["user_id"]))
         self.events.sort(key=lambda x: x.timestamp)
         self.index = 0
 
@@ -35,9 +31,7 @@ class EventManager:
         Returns an iterator object that allows iteration over the events.
 
         This method resets the index for iteration and returns the instance
-        itself, which is iterable. It is automatically called when an iteration
-        over the EventManager instance is initiated, making the instance ready
-        to provide elements one by one through the use of the __next__ method.
+        itself, which is iterable.
         
         Returns
         -------
@@ -67,6 +61,24 @@ class EventManager:
             raise StopIteration
 
     def __getitem__(self, index):        
+        """
+        Returns the event at the specified index.
+
+        Parameters
+        ----------
+        index : int
+            The index of the event to return.
+
+        Returns
+        -------
+        Event
+            The event at the specified index.
+
+        Raises
+        ------
+        IndexError
+            If the index is out of range.
+        """
         if 0 <= index < len(self.events):
             return self.events[index]
         else:
@@ -74,9 +86,37 @@ class EventManager:
         
 
     def __contains__(self, event):
+        """
+        Checks if an event is in the sorted list of events.
+
+        Parameters
+        ----------
+        event : Event
+            The event to check.
+
+        Returns
+        -------
+        bool
+            True if the event is in the sorted list of events, False otherwise.
+        """
         return event in self.events     
 
     def calculate_active_users_per_show(self):
+        """
+        Calculates the active users for each show based on the events.
+
+        This method iterates over the events and keeps track of active users
+        for each show. A user is considered active if they have a 'start' event
+        without a corresponding 'stop' event. The result is a dictionary where
+        the keys are the show names and the values are sets of user IDs representing
+        the active users.
+
+        Returns
+        -------
+        dict
+            A dictionary with shows as keys and sets of active user IDs as values.
+            If an error occurs, an empty dictionary is returned.
+        """
         try:
             active_users_show = {}
 
@@ -96,12 +136,35 @@ class EventManager:
         
 
     def active_users_per_show_generator(self):
+        """
+        Yields a generator of tuples containing the show name and the number of active users for the show.
+
+        This method is a generator that iterates over the result of calculate_active_users_per_show
+        and yields a tuple for each show with the show name and the number of active users.
+
+        Yields
+        ------
+        tuple
+            A tuple containing the show name and the number of active users for the show.
+        """
         active_users_show = self.calculate_active_users_per_show()
 
         for show, users_list in active_users_show.items():
             yield (show, len(users_list))    
 
     def export_active_users_per_show(self, filename):
+        """
+        Exports the active users per show to a CSV file.
+
+        Parameters
+        ----------
+        filename : str
+            The name of the file to export the data to.
+
+        Returns
+        -------
+        None
+        """
         try:
 
             data_generator = self.active_users_per_show_generator()
@@ -112,7 +175,6 @@ class EventManager:
                 shows.append(show)
                 active_users.append(user_count)
 
-            # Converter os dados para um DataFrame
             data = {
                 "Show": shows,
                 "Active Users": active_users
@@ -120,7 +182,6 @@ class EventManager:
 
             df = pd.DataFrame(data)
 
-            # Export the DataFrame to a CSV file
             df.to_csv(filename, index=False)
             print(f"Data successfully exported to {filename}")
         except Exception as e:

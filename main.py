@@ -4,8 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def test_application(graph_type_output):
-   # Tests using assert and store results in a dictionary
+def run_unit_tests_application(graph_type_output):
     """
     Runs unit tests on the EventManager class and its methods.
 
@@ -45,8 +44,8 @@ def test_application(graph_type_output):
     except AssertionError as e:
         test_results["Test - Export function output"] = str(e)
 
-    # Graph test results
     try:
+        # Graph test results
         test_names = list(test_results.keys())
         test_outcomes = [1 if result == "Passed" else 0 for result in test_results.values()]
         if graph_type_output == "plot_bar":
@@ -72,6 +71,6 @@ if __name__ == "__main__":
     if registry_list:
         event_manager = EventManager(registry_list)
         event_manager.export_active_users_per_show("output.csv")
-        test_application('plot_bar')
+        run_unit_tests_application('plot_bar')
 
  

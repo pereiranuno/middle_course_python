@@ -7,7 +7,7 @@
 
 <h1>Projeto de Gestão de Eventos</h1>
 
-<p>Este permite calcular utilizadores ativos por programa e exportar esses dados para um ficheiro output. O projeto está organizado em módulos separados e utiliza um ambiente virtual Python para gerir as dependências.</p>
+<p>Este programa permite ler dados de registo de adesão/cancelamento de subscritores de programa Netflix, e calcular os utilizadores ativos por programa, e exportar esses dados para um ficheiro output. O projeto está organizado em módulos separados e utiliza um ambiente virtual Python para gerir as dependências.</p>
 
 <h2>Sumário</h2>
 <ul>
@@ -53,8 +53,8 @@
 <h2 id="configuracao-do-ambiente">Configuração do Ambiente</h2>
 
 <h3>1. Clonar o Repositório</h3>
-<pre><code class="language-bash">git clone https://github.com/o_seu_utilizador/o_seu_repositorio.git
-cd o_seu_repositorio
+<pre><code class="language-bash">git clone https://github.com/pereiranuno/middle_course_python
+cd local_rep
 </code></pre>
 
 <h3>2. Criar o Ambiente Virtual</h3>
@@ -88,7 +88,7 @@ cd o_seu_repositorio
     <li>Ler os eventos do ficheiro <code>events.tsv</code>.</li>
     <li>Calcular os utilizadores ativos por programa.</li>
     <li>Exportar os dados para um ficheiro <code>output.csv</code>.</li>
-    <li>Executar testes unitários e exibir os resultados.</li>
+    <li>Executar testes unitários e exibir os resultados em gráfico.</li>
 </ul>
 
 <h2 id="execucao-dos-testes">Execução dos Testes</h2>
@@ -100,12 +100,6 @@ cd o_seu_repositorio
 
 <h2 id="notas-adicionais">Notas Adicionais</h2>
 <ul>
-    <li><strong>Dependências Adicionais:</strong>
-        <ul>
-            <li>Caso precise adicionar novas dependências, instale-as com <code>pip install nome_do_pacote</code> e atualize o <code>requirements.txt</code>:</li>
-            <pre><code class="language-bash">pip freeze > requirements.txt</code></pre>
-        </ul>
-    </li>
     <li><strong>Ficheiro <code>events.tsv</code>:</strong>
         <ul>
             <li>Certifique-se de que o ficheiro <code>events.tsv</code> está no mesmo diretório que <code>main.py</code>.</li>
@@ -115,7 +109,6 @@ cd o_seu_repositorio
     <li><strong>Ambiente Virtual:</strong>
         <ul>
             <li>Recomenda-se o uso do ambiente virtual para evitar conflitos de dependências.</li>
-            <li>Não inclua a pasta <code>venv/</code> no controlo de versão. Adicione-a ao <code>.gitignore</code> se necessário.</li>
         </ul>
     </li>
     <li><strong>Atualização das Dependências:</strong>
@@ -141,6 +134,5 @@ cd o_seu_repositorio
 Todos os testes foram concluídos com sucesso.
 </code></pre>
 <p>O ficheiro <code>output.csv</code> conterá uma tabela com os programas e o número de utilizadores ativos.</p>
-
 </body>
 </html>
