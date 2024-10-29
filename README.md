@@ -19,7 +19,6 @@
     <li><a href="#execucao-dos-testes">Execução dos Testes</a></li>
     <li><a href="#desativacao-do-ambiente-virtual">Desativação do Ambiente Virtual</a></li>
     <li><a href="#notas-adicionais">Notas Adicionais</a></li>
-    <li><a href="#licenca">Licença</a></li>
 </ul>
 
 <h2 id="estrutura-do-projeto">Estrutura do Projeto</h2>
